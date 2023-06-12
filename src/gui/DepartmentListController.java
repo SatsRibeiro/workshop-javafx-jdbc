@@ -44,6 +44,12 @@ public class DepartmentListController implements Initializable, DataChangeListen
 
 	@FXML
 	private TableColumn<Department, String> tableColumnName;
+	
+	@FXML
+	private TableColumn<Department, Integer> tableColumnValor;
+	
+	@FXML
+	private TableColumn<Department, Integer> tableColumnData;
 
 	@FXML
 	private TableColumn<Department, Department> tableColumnEDIT;
@@ -76,6 +82,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
@@ -161,7 +168,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	}
 
 	private void removeEntity(Department obj) {
-		Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Are you sure to delete?");
+		Optional<ButtonType> result = Alerts.showConfirmation("Confirmação", "Tem certeza que quer deletar?");
 		
 		if(result.get() == ButtonType.OK) {
 			if (service == null) {
